@@ -1,4 +1,4 @@
-div.SignUp{
+div.Signin{
    display: flex;
    flex-direction: column;
    width: 450px;
@@ -11,5 +11,10 @@ div.SignUp{
    form{
       margin-top: 0;
       padding: 0;
+      .buttonContainerInSignin{
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+      }
    }
 }
