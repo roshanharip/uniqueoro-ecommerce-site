@@ -1,0 +1,37 @@
+$prmy-clr : rgb(169, 58, 58);
+.Navigation {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+
+  .navLogoContainer {
+    height: 100%;
+    width: 50%;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    .navLogoLink{
+      height: 100%;
+      width: max-content;
+    }
+  }
+
+  .navLinksContainer {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .navLink {
+      padding: 10px 15px;
+      cursor: pointer;
+      color: $prmy-clr;
+      &:hover{
+        color: darken($prmy-clr, 30%);
+      }
+    }
+  }
+}
