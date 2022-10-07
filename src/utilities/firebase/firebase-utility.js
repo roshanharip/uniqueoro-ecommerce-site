@@ -1,5 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider,createUserWithEmailAndPassword , signInWithEmailAndPassword} from "firebase/auth";
+import { 
+  getAuth, 
+  signInWithPopup, 
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword , 
+  signInWithEmailAndPassword, 
+  sendPasswordResetEmail,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 // API KEY OF FIREBASE
@@ -52,3 +61,11 @@ export const signinUserAuthEmailAndPassword = async(email,password)=> {
   if(!email && !password) return;
   return await signInWithEmailAndPassword(auth,email,password);
 };
+export const sendUserPasswordResetEmail = async(email) =>{
+   await sendPasswordResetEmail(auth,email);
+   console.log("check your Email  "); 
+};  
+export const signOutUser = async() => await signOut(auth);
+export const onUserAuthStateChanged = (callback) => {
+  onAuthStateChanged(auth,callback);
+}

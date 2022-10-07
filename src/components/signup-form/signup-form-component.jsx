@@ -1,4 +1,5 @@
-import { useState,  } from "react";
+import { useState } from "react";
+
 import { createUserAuthEmailAndPassword, userDoc} from "../../utilities/firebase/firebase-utility";
 import Form from "../form/form-component";
 import './signup-form-component.scss';
@@ -12,6 +13,7 @@ const defaultField  = {
 const SignUp = () => {
    const [formField, setformField]= useState(defaultField);
    const {displayName, email, password, confirmpassword} = formField;
+
    const onChangeHandler= (event) =>{
       const {name,value } = event.target;
       setformField({...formField,[name]:value});
@@ -25,6 +27,7 @@ const SignUp = () => {
          try {
             const {user} =  await createUserAuthEmailAndPassword(email,password);
             await userDoc(user,{displayName});
+            console.log(user);
             resetFormField();
          }catch(error){
             if (error.code  === 'auth/email-already-in-use'){
@@ -47,22 +50,22 @@ const SignUp = () => {
             <Form 
                   label="name"
                   labelName="Name"
-                  type="text" id="name" required maxLength='15' onChange={onChangeHandler} name='displayName' value={displayName}
+                  type="text" id="name" required title="Enter Your Name" maxLength='15' onChange={onChangeHandler} name='displayName' value={displayName}
                />
             <Form 
                label="email"
                labelName="Email"
-               type="email" id="email" required maxLength='30' onChange={onChangeHandler} name='email' value={email}
+               type="email" id="email" required maxLength='30' title="Enter Your Email" onChange={onChangeHandler} name='email' value={email}
             />
             <Form 
                label="password"
                labelName="Password"
-               type="password" id="password" required maxLength='35' onChange={onChangeHandler} name='password' value={password}
+               type="password" id="password" required title="Enter Your Password" maxLength='35' onChange={onChangeHandler} name='password' value={password}
             />
             <Form 
                label="confirmPassword"
                labelName="Confirm Password"
-               type="password" id="confirmPassword" required maxLength='35' onChange={onChangeHandler} name='confirmpassword' value={confirmpassword}
+               type="password" id="confirmPassword" required maxLength='35' title="Enter your Confirm Password which is same as Above One" onChange={onChangeHandler} name='confirmpassword' value={confirmpassword}
             />
             <Button buttonText='Sign up' buttonType='default' type="submit" id="signupsubmit"/>
          </form>

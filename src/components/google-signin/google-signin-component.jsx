@@ -2,6 +2,7 @@ import './google-signin-component.scss';
 import { userDoc, signInWithGooglePopup } from '../../utilities/firebase/firebase-utility';
 import Button from '../button/button-component';
 const GoogleSignin= ()=>{
+
    const userLog = async () => {
       const {user} = await signInWithGooglePopup();
       await userDoc(user);

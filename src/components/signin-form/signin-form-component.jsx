@@ -1,9 +1,10 @@
-import './signin-form-component.scss';
 import { Fragment, useState } from 'react';
+import { signinUserAuthEmailAndPassword } from '../../utilities/firebase/firebase-utility';
 import GoogleSignin from '../google-signin/google-signin-component';
+import ResetPassword from '../reset-password/reset-password-component';
 import Form from '../form/form-component';
 import Button from '../button/button-component';
-import { signinUserAuthEmailAndPassword } from '../../utilities/firebase/firebase-utility';
+import './signin-form-component.scss';
 const defaultField  = {
    email : '',
    password : '',
@@ -21,8 +22,7 @@ const Signin = ()=> {
    const onSigninform = async (event) =>{
       event.preventDefault();
       try {
-         const response = await signinUserAuthEmailAndPassword(email,password);
-         console.log(response);
+         await signinUserAuthEmailAndPassword(email,password);
          resetFormField();
       }catch(error){
         switch(error.code){
@@ -47,13 +47,15 @@ const Signin = ()=> {
                <Form 
                   label="emailsignin"
                   labelName="Email"
-                  type="email" id="emailsignin" required maxLength='30' onChange={onChangeHandler} name='email' value={email}
+                  type="email" id="emailsignin" required maxLength='30' title="Enter Your Email" onChange={onChangeHandler} name='email' value={email}
                />
                <Form 
                   label="passwordsignin"
                   labelName="Password"
-                  type="password" id="passwordsignin" required maxLength='35' onChange={onChangeHandler} name='password' value={password}
+                  type="password" id="passwordsignin" title="Enter Your Password" required maxLength='35' onChange={onChangeHandler} name='password' value={password} 
                />
+               
+               <ResetPassword  />
                <div className='buttonContainerInSignin'>
                   <Button buttonText='Sign in' buttonType='default' type="submit" id="signinButton"/>
                   <GoogleSignin />  
