@@ -9,7 +9,6 @@ export const UserProvider = ({children}) => {
    const value = {currentUser,setCurrentUser};
    useEffect(() => {
       const subscribe = onUserAuthStateChanged((user)=>{
-         console.log(user);
          setCurrentUser(user);
       });
       return subscribe;
